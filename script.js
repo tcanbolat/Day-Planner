@@ -79,6 +79,7 @@ $(document).ready(function() {
     }
     colorChanger();
     
+    var timeChecker = setInterval(colorChanger, 15000);
     
     
     })
