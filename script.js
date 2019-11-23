@@ -1,9 +1,4 @@
-
-
-
 $(document).ready(function() {
-
-    // setting time variables contained within an array //
     var timeSlots = [
         moment().hour(09).format("h") + " AM",
         moment().hour(10).format("h") + " AM",
@@ -15,8 +10,7 @@ $(document).ready(function() {
         moment().hour(16).format("h") + " PM",
         moment().hour(17).format("h") + " PM",
     ]
-    
-    var militaryTime = [
+     var militaryTime = [
         moment().hour(09).format("H"),
         moment().hour(10).format("H"),
         moment().hour(11).format("H"),
@@ -27,8 +21,6 @@ $(document).ready(function() {
         moment().hour(16).format("H"),
         moment().hour(17).format("H"),
     ]
-    
-    // giving the div with the container class the HTML a name //
     var containerDiv = $(".container");
     
     // creating a forEach loop that makes a row containing the timeSlots array with a text area and a save button //
@@ -43,7 +35,7 @@ $(document).ready(function() {
         var saveButton = $("<button>").attr("class", "saveBtn fas fa-save col-1");
         rowDiv.append(saveButton);
       });
-    
+
     // appending the current day to the currentday div / achieved by using Moment.js //
     var currentDay = moment().format('MMMM Do YYYY');
     var currentDayDiv = $("#currentDay");
@@ -52,44 +44,24 @@ $(document).ready(function() {
     // creating local storage function //
     renderSavedText();
     function renderSavedText() {
-        var savedText = localStorage.getItem("text");
-        $("textarea")[0].value = localStorage.getItem("text09am");
-        $("textarea")[1].value = localStorage.getItem("text10am");
-        $("textarea")[2].value = localStorage.getItem("text11am");
-        $("textarea")[3].value = localStorage.getItem("text12pm");
-        $("textarea")[4].value = localStorage.getItem("text01pm");
-        $("textarea")[5].value = localStorage.getItem("text02pm");
-        $("textarea")[6].value = localStorage.getItem("text03pm");
-        $("textarea")[7].value = localStorage.getItem("text04pm");
-        $("textarea")[8].value = localStorage.getItem("text05pm");
+
+        $.each($("textarea"), function(i) {
+            $("textarea")[i].value = localStorage.getItem("textarea" + [i]);
+        })
     }
-    
-    
-    $("button").on("click", function () {
-        event.preventDefault();
-        localStorage.setItem("text09am", $("textarea")[0].value);
-        localStorage.setItem("text10am", $("textarea")[1].value);
-        localStorage.setItem("text11am", $("textarea")[2].value);
-        localStorage.setItem("text12pm", $("textarea")[3].value);
-        localStorage.setItem("text01pm", $("textarea")[4].value);
-        localStorage.setItem("text02pm", $("textarea")[5].value);
-        localStorage.setItem("text03pm", $("textarea")[6].value);
-        localStorage.setItem("text04pm", $("textarea")[7].value);
-        localStorage.setItem("text05pm", $("textarea")[8].value);
-        
-    })
-    
-    
+    $.each($("button"), function(i) {
+        $("button").on("click", function () {
+        localStorage.setItem("textarea" + [i], $("textarea")[i].value);   
+        })
+      })
+
     // changing the timeblock color based on time of day //
-    function hourUpdater() {
+    function colorChanger() {
     
     var currentHour = moment().hours();
-    console.log(currentHour);
-    
+
     $(".time-block").each(function() {
-        console.log($(this));
         var blockHour = parseInt($(this).attr("id"));
-        console.log(blockHour);
     
         if (blockHour < currentHour) {
             $(this).addClass("past");
@@ -105,8 +77,7 @@ $(document).ready(function() {
         }
     });
     }
-    hourUpdater();
-    
+    colorChanger();
     
     
     
