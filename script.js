@@ -57,12 +57,9 @@ $(document).ready(function() {
 
     // changing the timeblock color based on time of day //
     function colorChanger() {
-    
     var currentHour = moment().hours();
-
     $(".time-block").each(function() {
         var blockHour = parseInt($(this).attr("id"));
-    
         if (blockHour < currentHour) {
             $(this).addClass("past");
         }
@@ -78,9 +75,6 @@ $(document).ready(function() {
     });
     }
     colorChanger();
-    
     var timeChecker = setInterval(colorChanger, 15000);
-    
-    
     })
     
