@@ -48,9 +48,10 @@ $(document).ready(function() {
         $.each($("textarea"), function(i) {
             $("textarea")[i].value = localStorage.getItem("textarea" + [i]);
         })
+
     }
     $.each($("button"), function(i) {
-        $("button").on("click", function () {
+        $(this).on("click", function () {
         localStorage.setItem("textarea" + [i], $("textarea")[i].value);   
         })
       })
