@@ -12,6 +12,8 @@ Description: A simple day calendar, displaying rows from 9am to 5pm. each row ha
   
   * All text the user inputs into to text area is stored in the browsers Local Storage.
   
+  Link to App: https://tcanbolat.github.io/Day-Planner/
+  
   credits
   
   -Bootstrap
